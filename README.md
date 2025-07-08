@@ -4,4 +4,4 @@ Run this app locally: npm run build
 
 Start the app: npm run start
 
-I have some error during the run application 
+I had some errors during the running application. 
