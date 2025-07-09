@@ -7,7 +7,12 @@ const Modal = ({ closeModal, product }) => {
 
   const { updateProduct } = useProductStore();
   const handleUpdateProduct = async (product_id, updatedProduct) => {
-    await updateProduct(product_id, updateProduct);
+    const { success, message } = await updateProduct(
+      product_id,
+      updatedProduct
+    );
+    console.log(success, message);
+    closeModal(false);
   };
 
   return (
@@ -27,7 +32,7 @@ const Modal = ({ closeModal, product }) => {
             className="w-full px-4 py-2 border rounded"
             onChange={(e) =>
               setUpdatedProduct({
-                ...updateProduct,
+                ...updatedProduct,
                 name: e.target.value,
               })
             }
@@ -38,7 +43,7 @@ const Modal = ({ closeModal, product }) => {
             className="w-full px-4 py-2 border rounded"
             onChange={(e) =>
               setUpdatedProduct({
-                ...updateProduct,
+                ...updatedProduct,
                 price: e.target.value,
               })
             }
@@ -49,7 +54,7 @@ const Modal = ({ closeModal, product }) => {
             className="w-full px-4 py-2 border rounded"
             onChange={(e) =>
               setUpdatedProduct({
-                ...updateProduct,
+                ...updatedProduct,
                 image: e.target.value,
               })
             }

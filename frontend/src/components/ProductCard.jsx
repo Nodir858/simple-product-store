@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import { useProductStore } from "../store/product";
+import Modal from "./Modal.jsx";
 
 const ProductCard = ({ product }) => {
   const { deleteProduct, updateProduct } = useProductStore();
@@ -48,15 +49,13 @@ const ProductCard = ({ product }) => {
           />
         </div>
       </div>
-      {/* {openModel ? (
-        <Modal closeModal={setOpenModel} product={product}></Modal>
-      ) : null} */}
+      {openModel && <Modal closeModal={setOpenModel} product={product}></Modal>}
       {openModel ? (
         <div className="absolute top-0 left-0 w-full h-full backdrop-blur-xs flex justify-center items-center">
           <div className="bg-slate-100 p-6 rounded-xl shadow-lg text-center">
             <h1 className="text-xl font-bold mb-4">Update Product</h1>
             <button
-              onClick={() => setOpenModel(false)}
+              onClick={setOpenModel(false)}
               className="absolute right-[40rem] top-[21rem] cursor-pointer"
             >
               X
@@ -103,10 +102,7 @@ const ProductCard = ({ product }) => {
               >
                 Update
               </button>
-              <button
-                onClick={() => setOpenModel(false)}
-                className="cursor-pointer"
-              >
+              <button onClick={setOpenModel(false)} className="cursor-pointer">
                 Cancel
               </button>
             </div>
